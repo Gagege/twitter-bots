@@ -33,6 +33,7 @@ def main():
         print("Error during authentication")
         exit
 
+    # TODO: Make it say "It's the LORD's day" on Sundays
     message = random.choice(messages)
 
     print(message)
