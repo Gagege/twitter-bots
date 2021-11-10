@@ -1,2 +1,2 @@
 # twitter-bots
-Various random bots.
+Sundry Twitter bots.
