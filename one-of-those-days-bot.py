@@ -15,29 +15,33 @@ messages = [
 
 def main():
     ap = argparse.ArgumentParser(description="It's one of those days.")
+    ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--api-key", required=True)
     ap.add_argument("--api-secret", required=True)
     ap.add_argument("--access-token", required=True)
     ap.add_argument("--access-token-secret", required=True)
     args = ap.parse_args()
 
-    auth = tweepy.OAuthHandler(args.api_key, args.api_secret)
-    auth.set_access_token(args.access_token, args.access_token_secret)
+    if not args.dry_run:
+        auth = tweepy.OAuthHandler(args.api_key, args.api_secret)
+        auth.set_access_token(args.access_token, args.access_token_secret)
 
-    api = tweepy.API(auth)
+        api = tweepy.API(auth)
 
-    try:
-        api.verify_credentials()
-        print("Authentication OK")
-    except:
-        print("Error during authentication")
-        exit
+        try:
+            api.verify_credentials()
+            print("Authentication OK")
+        except:
+            print("Error during authentication")
+            exit
 
     # TODO: Make it say "It's the LORD's day" on Sundays
     message = random.choice(messages)
 
-    print(message)
-        # api.update_status("It's one of those days.")
+    if args.dry_run:
+        print(message)
+    else:
+        api.update_status(message)
 
 if __name__ == "__main__":
     main()
