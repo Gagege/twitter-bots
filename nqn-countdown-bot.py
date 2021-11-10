@@ -34,12 +34,20 @@ def main():
         next_november_1 =  datetime.date(year = today.year if today.month < 11 else today.year + 1, month=11, day=1)
         date_diff = next_november_1 - today
         pluralized_day = "day" if date_diff.days == 1 else "days"
-        print(f"{date_diff.days} {pluralized_day} left until No Quarter November.")
+        message = f"{date_diff.days} {pluralized_day} left until No Quarter November."
+        if args.dry_run:
+            print(message)
+        else:
+            api.update_status(message)
     else:
         # Subtract the current day from 31 instead of 30 (the number of days in November) so days_left will include the current day
         days_left = 31 - today.day
         pluralized_day = "day" if days_left == 1 else "days"
-        print(f"{days_left} {pluralized_day} left in No Quarter November.")
+        message = f"{days_left} {pluralized_day} left in No Quarter November."
+        if args.dry_run:
+            print(message)
+        else:
+            api.update_status(message)
 
 if __name__ == "__main__":
     main()
