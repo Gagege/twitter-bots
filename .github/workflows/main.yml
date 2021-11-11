@@ -42,4 +42,4 @@ jobs:
             API_SECRET: ${{ secrets.API_SECRET }}
             ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
             ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
-        run: python one-of-those-days-bot.py --dry-run
+        run: python one-of-those-days-bot.py --api-key "$API_KEY" --api-secret "$API_SECRET" --access-token "$ACCESS_TOKEN" --access-token-secret "$ACCESS_TOKEN_SECRET"
