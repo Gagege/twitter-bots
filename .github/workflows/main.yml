@@ -37,4 +37,9 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: run the bot
+        env: 
+            API_KEY: ${{ secrets.API_KEY }}
+            API_SECRET: ${{ secrets.API_SECRET }}
+            ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+            ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
         run: python one-of-those-days-bot.py --dry-run

@@ -16,10 +16,10 @@ messages = [
 def main():
     ap = argparse.ArgumentParser(description="It's one of those days.")
     ap.add_argument("--dry-run", action="store_true")
-    ap.add_argument("--api-key", required=True)
-    ap.add_argument("--api-secret", required=True)
-    ap.add_argument("--access-token", required=True)
-    ap.add_argument("--access-token-secret", required=True)
+    ap.add_argument("--api-key")
+    ap.add_argument("--api-secret")
+    ap.add_argument("--access-token")
+    ap.add_argument("--access-token-secret")
     args = ap.parse_args()
 
     if not args.dry_run:
