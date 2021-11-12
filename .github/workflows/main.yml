@@ -36,11 +36,10 @@ jobs:
           pip install tweepy
 
       # Runs a single command using the runners shell
-      - shell: bash
+      - name: run the bot
         env: 
             API_KEY: ${{ secrets.OOTDB_ACCESS_TOKEN }}
             API_SECRET: ${{ secrets.OOTDB_API_SECRET }}
             ACCESS_TOKEN: ${{ secrets.OOTDB_ACCESS_TOKEN }}
             ACCESS_TOKEN_SECRET: ${{ secrets.OOTDB_ACCESS_TOKEN_SECRET }}
-        run: |
-          python one-of-those-days-bot.py --api-key "$API_KEY" --api-secret "$API_SECRET" --access-token "$ACCESS_TOKEN" --access-token-secret "$ACCESS_TOKEN_SECRET"
+        run: python one-of-those-days-bot.py

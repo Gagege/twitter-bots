@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import os
 import tweepy
 import random
 import argparse
@@ -16,17 +17,19 @@ messages = [
 def main():
     ap = argparse.ArgumentParser(description="It's one of those days.")
     ap.add_argument("--dry-run", action="store_true")
-    ap.add_argument("--api-key")
-    ap.add_argument("--api-secret")
-    ap.add_argument("--access-token")
-    ap.add_argument("--access-token-secret")
     args = ap.parse_args()
 
-    print("keys", len(args.api_key), len(args.api_secret))
-
     if not args.dry_run:
-        auth = tweepy.OAuthHandler(args.api_key, args.api_secret)
-        auth.set_access_token(args.access_token, args.access_token_secret)
+
+        api_key = os.environ.get('API_KEY')
+        api_secret = os.environ.get('API_SECRET')
+        access_token = os.environ.get('ACCESS_TOKEN')
+        access_token_secret = os.environ.get('ACCESS_TOKEN_SECRET')
+
+        print("keys", len(api_key), len(api_secret))
+        
+        auth = tweepy.OAuthHandler(api_key, api_secret)
+        auth.set_access_token(access_token, access_token_secret)
 
         api = tweepy.API(auth)
 
