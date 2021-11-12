@@ -22,6 +22,8 @@ def main():
     ap.add_argument("--access-token-secret")
     args = ap.parse_args()
 
+    print(args)
+
     if not args.dry_run:
         auth = tweepy.OAuthHandler(args.api_key, args.api_secret)
         auth.set_access_token(args.access_token, args.access_token_secret)
