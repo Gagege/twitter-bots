@@ -22,7 +22,7 @@ def main():
     ap.add_argument("--access-token-secret")
     args = ap.parse_args()
 
-    print(len(args.api_key), len(args.api_secret))
+    print("keys", len(args.api_key), len(args.api_secret))
 
     if not args.dry_run:
         auth = tweepy.OAuthHandler(args.api_key, args.api_secret)
@@ -32,10 +32,11 @@ def main():
 
         try:
             api.verify_credentials()
-            print("Authentication OK")
         except:
             print("Error during authentication")
             exit
+
+        print("Authentication OK")
 
     # TODO: Make it say "It's the LORD's day" on Sundays
     message = random.choice(messages)
